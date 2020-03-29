@@ -1,0 +1,37 @@
+﻿@model Uplift.Models.ViewModels.HomeViewModel
+
+@foreach (var category in Model.CategoryList.OrderBy(o => o.DisplayOrder))
+{
+    @if (Model.ServiceList.Where(c => c.CategouryId == category.Id).Count() > 0)
+    {
+        <div class="row container pb-3 backgroundWhite">
+            <div class="col-12">
+                <div class="row">
+                    <h2 class="text-success"><b>@category.Name</b></h2>
+                    <div class="col-12">
+                        <div class="row my-3">
+                            @foreach (var service in Model.ServiceList.Where(c => c.CategouryId == category.Id))
+                            {
+                                <div class="col-lg-4 col-xs-3 col-md-6 pb-4">
+                                    <div class="card" style="border:2px solid #43ac6a;border-radius:5px;background:url('/images/leaves.jpg')">
+                                        <div class="pl-3 pt-1 text-center">
+                                            <h3 class="card-title text-primary"><b>@service.Name</b></h3>
+                                        </div>
+                                        <div class="d-flex justify-content-between mr-1">
+                                            <div class="pl-1 text-muted">Price per Service</div>
+                                            <div class="pl-1 text-danger h5">$@service.Price</div>
+                                        </div>
+                                        <img src="@service.ImageUrl" class="card-img-top p-2 rounded" height="300px;" />
+
+                                        <div class="text-muted text-center pb-2">@service.Frequency.Name</div>
+                                        <a asp-action="Details" class="btn btn-success" style="border-radius:2px;" asp-route-id="@service.Id">Details</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

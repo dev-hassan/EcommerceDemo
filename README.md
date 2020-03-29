@@ -1,2 +1,2 @@
-# EcommerceDemo
+# E-commerce Demo
 Ecommerce Demo Web App using ASP.net Core , ntier architecture ,Repository , unitofwork , ....
